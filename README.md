@@ -1,2 +1,0 @@
-# CarND
-Self-Driving Cars
