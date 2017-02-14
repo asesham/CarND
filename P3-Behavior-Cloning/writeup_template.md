@@ -1,11 +1,5 @@
 #**Behavioral Cloning** 
 
-##Writeup Template
-
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
-
 **Behavrioal Cloning Project**
 
 The goals / steps of this project are the following:
@@ -26,10 +20,6 @@ The goals / steps of this project are the following:
 [image6]: ./examples/placeholder_small.png "Normal Image"
 [image7]: ./examples/placeholder_small.png "Flipped Image"
 
-## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
-
----
 ###Files Submitted & Code Quality
 
 ####1. Submission includes all required files and can be used to run the simulator in autonomous mode
@@ -38,39 +28,38 @@ My project includes the following files:
 * model.py containing the script to create and train the model
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
-* writeup_report.md or writeup_report.pdf summarizing the results
+* writeup_report.md summarizing the results
 
-####2. Submssion includes functional code
-Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
+####2. Submission includes functional code
+Using the Udacity provided simulator and my drive.py file, model.h5 file the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
 ```
 
-####3. Submssion code is usable and readable
+####3. Submission code is usable and readable
 
-The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
+The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works. I used python generator for memory-efficient algorithm to load the data in batches to the model.
 
 ###Model Architecture and Training Strategy
 
 ####1. An appropriate model arcthiecture has been employed
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
-
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+I used NVIDIA's model for this project which consists of 5 CNN with 2 3x3 and 3 5x5 filter sizes layers and depths between 24 and 64 and 3 fully connected layers. I added a few more dropout layers to the network for an efficient model to my data.
+The model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer.
 
 ####2. Attempts to reduce overfitting in the model
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
+The model contains dropout layers in order to reduce overfitting. The collected dataset is also balanced to obtain all steering angles in right proportion so that the model won't be biased to certain steering angle.
 
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The model was trained and validated on different data sets to ensure that the model was not overfitting . The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 ####3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The model used an adam optimizer with learning rate of 0.001
 
 ####4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road. I augmented the training data with the images which needs steering angle > 0.5 just to balance the data with other steering angles. Steering values for left image are obtained by adding 0.2 to the steering value from the center camera view and subtracted by 0.2 for a right camera view of an image.
 
 For details about how I created the training data, see the next section. 
 
@@ -78,9 +67,13 @@ For details about how I created the training data, see the next section.
 
 ####1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
+I preferred NVIDIA's architecture since it was used to train Self Driving Cars and the model was able to detect roads based on steering angle without ever explicitly training it to detect raods.
 
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
+I have used the data set given by Udacity. My first step was to balance the data. I reduced the data for straight images and the steering angle of 0 by a fraction of 0.9, as the data has many of them. 
+
+I used python generator to reduce the memory usage. I used ImagedataGenerator from keras. But it does not give me good results with augmenting the data. The flipping of the images is done at random. I needed at a particular steering angle. I decided to develop my own generator.
+
+I flipped some of the images occasionally to remove bias for more number of left turns and the car went off the road and failed to recover after the bridge where there is no curb. I augmented the data set with my images at the points where it needs more steering angles as the histogram shows the data has less images which need more steering angles. This time the car tends to wobble more at the straight road. So I increased the images with straight roads by reducing the fraction to 0.6. The car started to move smoothly but at the next turn the car failed to recover. I added more dropout layers to the network to control the wobble of the car.
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
 
