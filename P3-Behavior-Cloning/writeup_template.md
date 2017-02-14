@@ -79,19 +79,28 @@ Then the car tends to wobble more at the straight road. So I increased the image
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
 
-To combat the overfitting, I modified the model so that ...
-
-Then I ... 
-
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
-
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
+
+
 ####2. Final Model Architecture
+The final model architecture (model.py lines 446-488) consisted of a convolution neural network with the following layers and layer sizes ...
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+Lambda layer            : Normalizes data to the range -1 and 1
+Convolution layer 1     : 24 filters of 5x5 size, stride-(2,2) valid padding, Relu activation 
+Convolution layer 2     : 36 filters of 5x5 size, stride-(2,2) valid padding, Relu activation
+Dropout layer 1         : dropout probability 0.5
+Convolution layer 3     : 48 filters of 5x5 size, stride-(2,2) valid padding, Relu activation
+Dropout layer 2         : dropout probability 0.5
+Convolution layer 4     : 64 filters of 3x3 size, stride-(2,2) valid padding, Relu activation
+Dropout layer 3         : dropout probability 0.5
+Convolution layer 5     : 64 filters of 3x3 size, stride-(2,2) valid padding, Relu activation
+Dropout layer 4         : dropout probability 0.5
 
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+Fully connected layer 1 : 100 neurons
+Fully connected layer 2 :  50 neurons  
+Fully connected layer 3 :  10 neurons
+Fully connected layer 4 :   1 neuron
 
 ![alt text][image1]
 
