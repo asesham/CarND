@@ -17,23 +17,23 @@ The goals / steps of this project are the following:
 [image1]: ./output_images/distort_image.jpg "distorted chessboard Image"
 [image2]: ./output_images/undistort_image.jpg "Undistorted Chessboard Image"
 [image3]: ./output_images/undistort_road_image.jpg "Undistorted Image of the road"
-[image4]: ./output_images/H_image.jpg "Binary Example"
-[image5]: ./output_images/S_image.jpg "Warp Example"
-[image6]: ./output_images/L_image.jpg "Fit Visual"
-[image7]: ./output_images/L_image.jpg "Output"
-[image8]: ./output_images/L_image.jpg "Output"
-[image9]: ./output_images/L_image.jpg "Output"
-[image10]: ./output_images/distort_output.jpg "Output"
-[image11]: ./output_images/distort_output.jpg "Output"
-[image12]: ./output_images/distort_output.jpg "Output"
-[image13]: ./output_images/distort_output.jpg "Output"
+[image4]: ./output_images/H_image.jpg "H image"
+[image5]: ./output_images/S_image.jpg "S image"
+[image6]: ./output_images/L_image.jpg "L image"
+[image7]: ./output_images/B_image.jpg "B image"
+[image8]: ./output_images/Mag_image.jpg "gradient magnitude image"
+[image9]: ./output_images/comb_image.jpg "combination image"
+[image10]: ./output_images/Road_image_with_points.jpg "Road image with source points"
+[image11]: ./output_images/pers_road_image.jpg "perspective transformed road image"
+[image12]: ./output_images/poly_fit_image.jpg "Image with lane lines marked"
+[image13]: ./output_images/warped_back_image.jpg "warped back image to the road"
 [video1]: ./project_video.mp4 "Video"
 
 ###Camera Calibration
 
 ####1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
 
-The code for this step is contained in the first code cell of the IPython notebook located in "./examples/example.ipynb" (or in lines # through # of the file called `some_file.py`).  
+The code for this step is contained in the second code cell of `P4.ipynb`).  
 
 I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
 
@@ -58,7 +58,7 @@ I applied the same technique I used to undistort the chess board image to the ro
 ![alt text][image3]
 
 ####2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
-I used a combination of color and gradient thresholds to generate a binary image. I tested with different combinations of color and gradient threshold and I finally came up with a combination of l channel in HLS and b channel in Lab.  Here's the procedure of how I came up with this combination.
+I used a combination of color and gradient thresholds to generate a binary image. I tested with different combinations of color and gradient threshold and I finally came up with a combination of l channel in HLS color space and b channel in Lab color space.  Here's the procedure of how I came up with this combination.
 
 I tried with H channel in HLS to help me find the lines. I used a threshold channel of [17, 30]. In this channel H is able to detect the yellow line perfectly in all conditions. But It is associated with a large noise. The H channel image is as shown below.
 
@@ -68,15 +68,15 @@ I used S channel in a threshold range [100, 255]. S is able to detect all color 
 
 ![alt text][S_image]
 
-I used L channel in a threshold range [150, 255]. L channel has a capability to detect white lines nearly perfect in all conditions. The L channel image is as shown below.
+I used L channel in a threshold range [200, 255]. L channel has a capability to detect white lines nearly perfect in all conditions. The L channel image is as shown below.
 
 ![alt text][L_image]
 
-I also tried with B channel in Lab color space. B produced good results finding the yellow line very perfectly in all conditions. This made me use B channel in all my test combinations to find the lane lines. The image of B channel is as shown below.
+I also tried with B channel in Lab color space in a threshold range [155,255]. B produced good results finding the yellow line very perfectly in all conditions. This made me use B channel in all my test combinations to find the lane lines. The image of B channel is as shown below.
 
 ![alt text][B_image]
 
-I tried using Magnitude gradient threshold. But color spaces are lot more better in detecting the lane lines. I thought of just using the color space would prodice good results in my final result. The image produced by gradient thresholding is as follows.
+I tried using Magnitude gradient threshold with range [50,200]. But color spaces are lot more better in detecting the lane lines. I thought of just using the color space would prodice good results in my final result. The image produced by gradient thresholding is as follows.
 
 ![alt text][Mag_image]
 
