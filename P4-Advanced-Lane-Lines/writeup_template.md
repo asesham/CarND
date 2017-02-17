@@ -27,7 +27,7 @@ The goals / steps of this project are the following:
 [image11]: ./output_images/pers_road_image.jpg "perspective transformed road image"
 [image12]: ./output_images/poly_fit_image.jpg "Image with lane lines marked"
 [image13]: ./output_images/warped_back_image.jpg "warped back image to the road"
-[video1]: ./project_video.mp4 "Video"
+[video1]: ./result.mp4 "Video"
 
 ###Camera Calibration
 
