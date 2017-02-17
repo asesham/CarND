@@ -14,13 +14,19 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/undistort_output.png "Original Image"
-[image2]: ./test_images/test1.jpg "Undistorted Image"
-[image3]: ./test_images/test1.jpg "Undistorted Image of the road"
-[image4]: ./examples/binary_combo_example.jpg "Binary Example"
-[image5]: ./examples/warped_straight_lines.jpg "Warp Example"
-[image6]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image7]: ./examples/example_output.jpg "Output"
+[image1]: ./output_images/distort_output.jpg "distorted chessboard Image"
+[image2]: ./output_images/undistort_output.jpg "Undistorted Chessboard Image"
+[image3]: ./output_images/distort_output.jpg "Undistorted Image of the road"
+[image4]: ./output_images/distort_output.jpg "Binary Example"
+[image5]: ./output_images/distort_output.jpg "Warp Example"
+[image6]: ./output_images/distort_output.jpg "Fit Visual"
+[image7]: ./output_images/distort_output.jpg "Output"
+[image8]: ./output_images/distort_output.jpg "Output"
+[image9]: ./output_images/distort_output.jpg "Output"
+[image10]: ./output_images/distort_output.jpg "Output"
+[image11]: ./output_images/distort_output.jpg "Output"
+[image12]: ./output_images/distort_output.jpg "Output"
+[image13]: ./output_images/distort_output.jpg "Output"
 [video1]: ./project_video.mp4 "Video"
 
 ###Camera Calibration
