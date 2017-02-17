@@ -33,7 +33,7 @@ The goals / steps of this project are the following:
 
 ####1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
 
-The code for this step is contained in the second code cell of `P4.ipynb`).  
+The code for this step is contained in the second code cell of `P4.ipynb`.  
 
 I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
 
@@ -86,7 +86,7 @@ After trying different combinations like ((S&H) | L), (H | L), (S | L), (B | L),
 
 ####3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
-The code for my perspective transform includes a function called `perspective_transform()`, which appears in code cell 3 in P4.ipynb. The `perspective_transform()` function takes as inputs an image (`img`).  I chose the hardcode the source and destination points in the following manner:
+The code for my perspective transform includes a function called `perspective_transform()`, which appears in code cell 3 in `P4.ipynb`. The `perspective_transform()` function takes as inputs an image (`img`).  I chose the hardcode the source and destination points in the following manner:
 
 ```
 src = np.float32([[545,470],[750, 470],
@@ -110,19 +110,21 @@ I verified that my perspective transform was working as expected by drawing the 
 
 ![alt text][image10]
 
+### Perspective transformed image
+
 ![alt text][image11]
 
 ####4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-I  have computed a histogram and found peaks in left and right parts of image and formed a rectangle window around those peaks and then stack those windows which follow the line by checking and if the number of points in each window is greater than 50 then change the x position of the window to the mean x position of the points. I maintain record of all the points in the window and then used polyfilt() functions to fit a curve to those points.
+I  have computed a histogram and found peaks in left and right parts of image and formed a rectangle window around those peaks and then stack those windows which follow the line by checking and if the number of points in each window is greater than 50 then change the x position of the window to the mean x position of the points. I maintain record of all the points in the window and then used polyfit() functions to fit a curve to those points.
 
-Once I fit a curve in a frame of video, for the next frame I donot repeat the whole procedure but search within the region around the pervious fitted curve
+Once I fit a curve in a frame of video, for the next frame I do not repeat the whole procedure but search within the region around the pervious fitted curve
 
 ![alt text][image12]
 
 ####5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I calculated the radius by the following code which takes care of the conversion from pixels to meters which is implemented in lines 40 through 206 of code cell 16 in my code in `P4.ipynb`
+I calculated the radius by the following code which takes care of the conversion from pixels to meters which is implemented in code cell 12 in my code in `P4.ipynb`
 
 ```
 ym_per_pix = 30/720 # meters per pixel in y dimension
@@ -138,7 +140,7 @@ right_curverad = ((1 + (2*right_fit_cr[0]*y_eval*ym_per_pix + right_fit_cr[1])**
 
 ####6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in my code in `P4.ipynb`.  Here is an example of my result on a test image:
+I implemented this step in my code in code cell 13 in `P4.ipynb`.  Here is an example of my result on a test image:
 
 ![alt text][image13]
 
@@ -148,7 +150,7 @@ I implemented this step in my code in `P4.ipynb`.  Here is an example of my resu
 
 ####1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./result.mp4)
 
 ---
 
