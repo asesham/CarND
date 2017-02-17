@@ -62,27 +62,27 @@ I used a combination of color and gradient thresholds to generate a binary image
 
 I tried with H channel in HLS to help me find the lines. I used a threshold channel of [17, 30]. In this channel H is able to detect the yellow line perfectly in all conditions. But It is associated with a large noise. The H channel image is as shown below.
 
-![alt text][H_image]
+![alt text][image4]
 
 I used S channel in a threshold range [100, 255]. S is able to detect all color lines but I found it is not perfect in all conditions. Then I thought of using S channel with h channel which produced very good results. The S channel is a s shown below.
 
-![alt text][S_image]
+![alt text][image4]
 
 I used L channel in a threshold range [200, 255]. L channel has a capability to detect white lines nearly perfect in all conditions. The L channel image is as shown below.
 
-![alt text][L_image]
+![alt text][image6]
 
 I also tried with B channel in Lab color space in a threshold range [155,255]. B produced good results finding the yellow line very perfectly in all conditions. This made me use B channel in all my test combinations to find the lane lines. The image of B channel is as shown below.
 
-![alt text][B_image]
+![alt text][image7]
 
 I tried using Magnitude gradient threshold with range [50,200]. But color spaces are lot more better in detecting the lane lines. I thought of just using the color space would prodice good results in my final result. The image produced by gradient thresholding is as follows.
 
-![alt text][Mag_image]
+![alt text][image8]
 
 After trying different combinations like ((S&H) | L), (H | L), (S | L), (B | L), (S | B), ((S&H) | L | B), I got good results with (L | B ) and ((S&H) | L | B). I used (L | B) combination to finally produce my result. The combination image is shown below:
 
-![alt text][Comb_image]
+![alt text][image9]
 
 ####3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
@@ -108,9 +108,9 @@ I verified that my perspective transform was working as expected by drawing the 
 
 ### Points selected for Warped Image
 
-![alt text][Road_image_with_points]
+![alt text][image10]
 
-![alt text][pers_road_image]
+![alt text][image11]
 
 ####4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
@@ -118,7 +118,7 @@ I  have computed a histogram and found peaks in left and right parts of image an
 
 Once I fit a curve in a frame of video, for the next frame I donot repeat the whole procedure but search within the region around the pervious fitted curve
 
-![alt text][poly_fit _image]
+![alt text][image12]
 
 ####5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
@@ -140,7 +140,7 @@ right_curverad = ((1 + (2*right_fit_cr[0]*y_eval*ym_per_pix + right_fit_cr[1])**
 
 I implemented this step in my code in `P4.ipynb`.  Here is an example of my result on a test image:
 
-![alt text][warped_back_image]
+![alt text][image13]
 
 ---
 
