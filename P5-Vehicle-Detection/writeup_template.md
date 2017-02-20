@@ -11,13 +11,17 @@ The goals / steps of this project are the following:
 * Estimate a bounding box for vehicles detected.
 
 [//]: # (Image References)
-[image1]: ./examples/car_not_car.png
-[image2]: ./examples/HOG_example.jpg
-[image3]: ./examples/sliding_windows.jpg
-[image4]: ./examples/sliding_window.jpg
-[image5]: ./examples/bboxes_and_heat.png
-[image6]: ./examples/labels_map.png
-[image7]: ./examples/output_bboxes.png
+[image1]: ./output_images/car.png
+[image2]: ./output_images/car_hog.jpg
+[image3]: ./output_images/notcar.png[image4]: ./output_images/notcar_hog.jpg
+[image5]: ./output_images/cary.jpg
+[image6]: ./output_images/hogy.jpg
+[image7]: ./output_images/bbox.jpg
+[image8]: ./output_images/all_boxes_car.jpg
+[image9]: ./output_images/heat_map.jpg
+[image10]: ./output_images/all_boxes_car.jpg
+[image11]: ./output_images/final_car_boxed.jpg
+
 [video1]: ./project_video.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
@@ -121,7 +125,6 @@ Here's a [link to my video result](./project5_result.mp4)
 
 False positive may occur when a window has no car and was detected to be a car. One of the simplest way to eliminate the False positives is using multi-frame accumulated heatmap  where I stored the last 15 heatmaps and calculated the average heatmap and then thresholded the heatmap. When you consider multiple frames the chances of False positive getting detected multiple times is tough and choosing a good threshold on the average heatmap can eliminate the False positives to a very good extent. This is implemented in the `lines 436-467 of the Vehicle_detect function`  
 To combine the result of overlapping windows I have used connectedness property of pixels in a heat map to combine all the combine the overlapping windows using `scipy.ndimage.measurements.label()`. The following are the results obtained:
-
 
 #### Heatmap
 
