@@ -122,21 +122,18 @@ Here's a [link to my video result](./project5_result.mp4)
 False positive may occur when a window has no car and was detected to be a car. One of the simplest way to eliminate the False positives is using multi-frame accumulated heatmap  where I stored the last 15 heatmaps and calculated the average heatmap and then thresholded the heatmap. When you consider multiple frames the chances of False positive getting detected multiple times is tough and choosing a good threshold on the average heatmap can eliminate the False positives to a very good extent. This is implemented in the `lines 436-467 of the Vehicle_detect function`  
 To combine the result of overlapping windows I have used connectedness property of pixels in a heat map to combine all the combine the overlapping windows using `scipy.ndimage.measurements.label()`. The following are the results obtained:
 
-![alt text][image9]
-![alt text][image10]
-![alt text][image11]
 
 #### Heatmap
 
-![alt text][image12]
+![alt text][image9]
 
 #### All the windows corresponding to heat map
 
-![alt text][image13]
+![alt text][image10]
 
 #### Combined window using scipy.ndimage.measurements.label() by using 8-connected
 
-![alt text][image14]
+![alt text][image11]
 
 ---
 
