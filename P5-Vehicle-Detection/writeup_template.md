@@ -13,7 +13,8 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 [image1]: ./output_images/car.png
 [image2]: ./output_images/car_hog.jpg
-[image3]: ./output_images/notcar.png[image4]: ./output_images/notcar_hog.jpg
+[image3]: ./output_images/notcar.png
+[image4]: ./output_images/notcar_hog.jpg
 [image5]: ./output_images/cary.jpg
 [image6]: ./output_images/hogy.jpg
 [image7]: ./output_images/bbox.jpg
