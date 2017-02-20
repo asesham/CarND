@@ -17,11 +17,15 @@ The goals / steps of this project are the following:
 [image4]: ./output_images/notcar_hog.jpg
 [image5]: ./output_images/cary.jpg
 [image6]: ./output_images/hogy.jpg
-[image7]: ./output_images/bbox.jpg
-[image8]: ./output_images/all_boxes_car.jpg
-[image9]: ./output_images/heat_map.jpg
-[image10]: ./output_images/all_boxes_car.jpg
-[image11]: ./output_images/final_car_boxed.jpg
+[image7]: ./output_images/caru.jpg
+[image8]: ./output_images/hogu.jpg
+[image9]: ./output_images/carv.jpg
+[image10]: ./output_images/hogv.jpg
+[image11]: ./output_images/bbox.jpg
+[image12]: ./output_images/all_boxes_car.jpg
+[image13]: ./output_images/heat_map.jpg
+[image14]: ./output_images/all_boxes_car.jpg
+[image15]: ./output_images/final_car_boxed.jpg
 
 [video1]: ./project5_result.mp4
 
@@ -76,6 +80,22 @@ cells_per_block=(2, 2)
 
 ![alt text][image6]
 
+#### U image of car in YUV space:
+
+![alt text][image7]
+
+#### HOG visualization of U image of car in YUV space:
+
+![alt text][image8]
+
+#### V image of car in YUV space:
+
+![alt text][image9]
+
+#### HOG visualization of V image of car in YUV space:
+
+![alt text][image10]
+
 ####2. Explain how you settled on your final choice of HOG parameters.
 
 I tried various combinations of parameters and I finally chose the parameters shown above. I decided my final parameters based on length of the vector it produced as it directly reflects the time consumption of the code and accuracy I am getting with my classifier. I changed the number of orientations from 5 to 10 and 8 orientations worked best for me.
@@ -97,7 +117,7 @@ This is implemented in code cell 14 in `P5.ipynb` where I have a function for sl
 ```
 Here is the image containing the list of windows that are usually searched for:
 
-![alt text][image7]
+![alt text][image11]
 
 ####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
@@ -107,7 +127,7 @@ Ultimately I searched on three scales using YUV 3-channel HOG features. The clas
 The following image shows all the windows returned by the `search_windows` where the car is detected.
 
 
-![alt text][image8]
+![alt text][image12]
 
 
 ---
@@ -125,15 +145,15 @@ To combine the result of overlapping windows I have used connectedness property 
 
 #### Heatmap
 
-![alt text][image9]
+![alt text][image13]
 
 #### All the windows corresponding to heat map
 
-![alt text][image10]
+![alt text][image14]
 
 #### Combined window using scipy.ndimage.measurements.label() by using 8-connected
 
-![alt text][image11]
+![alt text][image15]
 
 ---
 
