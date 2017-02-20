@@ -120,7 +120,7 @@ Here's a [link to my video result](./project5_result.mp4)
 
 ####2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
-False positive may occur when a window has no car and was detected to be a car. One of the simplest way to eliminate the False positives is using multi-frame accumulated heatmap  where I stored the last 15 heatmaps and calculated the average heatmap and then thresholded the heatmap. When you consider multiple frames the chances of False positive getting detected multiple times is tough and choosing a good threshold on the average heatmap can eliminate the False positives to a very good extent. This is implemented in code cell ## in `Vehicle_detect function`  
+False positive may occur when a window has no car and was detected to be a car. One of the simplest way to eliminate the False positives is using multi-frame accumulated heatmap  where I stored the last 15 heatmaps and calculated the average heatmap and then thresholded the heatmap. When you consider multiple frames the chances of False positive getting detected multiple times is tough and choosing a good threshold on the average heatmap can eliminate the False positives to a very good extent. This is implemented in code cell 18 in `Vehicle_detect function`  
 To combine the result of overlapping windows I have used connectedness property of pixels in a heat map to combine all the combine the overlapping windows using `scipy.ndimage.measurements.label()`. The following are the results obtained:
 
 #### Heatmap
