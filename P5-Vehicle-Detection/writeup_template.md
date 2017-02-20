@@ -35,7 +35,7 @@ The goals / steps of this project are the following:
 
 ####1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
-The code for this step is contained in the first code cell of the IPython notebook (or in lines # through # of the file called `P5.ipynb`.  
+The code for this step is contained in the code cell 3 of `P5.ipynb`.  
 
 I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes and their HOG visualizations:
 
@@ -55,7 +55,7 @@ I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an 
 
 ![alt text][image4]
 
-The `extract_features` function is called for the list of images,  in the code cell ## in `P5.ipynb`. It extracts Hog features, spatial and color histogram features. However, I have only used HOG features of each color channel of a color space. The results of these extracted features for each set of images are then stacked and normalized (using sklearn's `StandardScaler` method) and then split into training and testing datasets (using sklearn's `train_test_split` method).
+The `extract_features` function is called for the list of images,  in the code cell 5 in `P5.ipynb`. It extracts Hog features, spatial and color histogram features. However, I have only used HOG features of each color channel of a color space. The results of these extracted features for each set of images are then stacked and normalized (using sklearn's `StandardScaler` method) and then split into training and testing datasets (using sklearn's `train_test_split` method).
 
 I then explored different color spaces like HLS, HSV, YUV, RGB. But I achieved highest accuracy with YUV color space. So I used YUV for my feature extraction. 
 
@@ -78,11 +78,11 @@ cells_per_block=(2, 2)
 
 ####2. Explain how you settled on your final choice of HOG parameters.
 
-I tried various combinations of parameters and I finally chose the parameters shown above. I decided my final parameters based on length of the vector it produced  and accuracy I am getting with my classifier. I changed the number of orientations from 5 to 10 and 8 orientations worked best for me.
+I tried various combinations of parameters and I finally chose the parameters shown above. I decided my final parameters based on length of the vector it produced as it directly reflects the time consumption of the code and accuracy I am getting with my classifier. I changed the number of orientations from 5 to 10 and 8 orientations worked best for me.
 
 ####3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I have only used HOG features and not included color or spatial features to avoid very huge feature vectors. Extracting features and training the classifier is implemented in code cell 11 in `P5.ipynb`. I have divided the data(car and non car images) into training and testing datasets and then extracted features (HOG) using `extract features` function. I have then scaled and normalized the features to zero mean and unit variance and fed to Support vector machine classifier with appropriate labels(car or not car). The model learnt by the classifier was tested to predict labels on the testing dataset. I achieved an accuracy score of 98.65% on the testing data set.
+I have only used HOG features and not included color or spatial features to avoid very huge feature vectors. Extracting features and training the classifier is implemented in code cell 8 in `P5.ipynb`. I have divided the data(car and non car images) into training and testing datasets and then extracted features (HOG) using `extract features` function. I have then scaled and normalized the features to zero mean and unit variance and fed to Support vector machine classifier with appropriate labels(car or not car). The model learnt by the classifier was tested to predict labels on the testing dataset. I achieved an accuracy score of 98.65% on the testing data set.
 
 ###Sliding Window Search
 
@@ -101,7 +101,7 @@ Here is the image containing the list of windows that are usually searched for:
 
 ####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on three scales using YUV 3-channel HOG features. The classifier predicted whether a given window has a car with some confidence. The windows that returned high confidence are selected to be robust to false positives and then I created a heatmap which is similar to probability of detecting a car in a window. If there are multiple windows in a region then the heatmap has high value and indicates higher probability of detecting a car which can be done by thresholding heatmap after trying different values for a threshold and the best threshold for which I could reasonably detect cars and eliminate false positives is 2. This is all implemented in lines `search_windows` in `lines 233 to 271`.
+Ultimately I searched on three scales using YUV 3-channel HOG features. The classifier predicted whether a given window has a car with some confidence. The windows that returned high confidence are selected to be robust to false positives and then I created a heatmap which is similar to probability of detecting a car in a window. If there are multiple windows in a region then the heatmap has high value and indicates higher probability of detecting a car which can be done by thresholding heatmap after trying different values for a threshold and the best threshold for which I could reasonably detect cars and eliminate false positives is 2.
 
 
 The following image shows all the windows returned by the `search_windows` where the car is detected.
@@ -120,7 +120,7 @@ Here's a [link to my video result](./project5_result.mp4)
 
 ####2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
-False positive may occur when a window has no car and was detected to be a car. One of the simplest way to eliminate the False positives is using multi-frame accumulated heatmap  where I stored the last 15 heatmaps and calculated the average heatmap and then thresholded the heatmap. When you consider multiple frames the chances of False positive getting detected multiple times is tough and choosing a good threshold on the average heatmap can eliminate the False positives to a very good extent. This is implemented in the `lines 436-467 of the Vehicle_detect function`  
+False positive may occur when a window has no car and was detected to be a car. One of the simplest way to eliminate the False positives is using multi-frame accumulated heatmap  where I stored the last 15 heatmaps and calculated the average heatmap and then thresholded the heatmap. When you consider multiple frames the chances of False positive getting detected multiple times is tough and choosing a good threshold on the average heatmap can eliminate the False positives to a very good extent. This is implemented in code cell ## in `Vehicle_detect function`  
 To combine the result of overlapping windows I have used connectedness property of pixels in a heat map to combine all the combine the overlapping windows using `scipy.ndimage.measurements.label()`. The following are the results obtained:
 
 #### Heatmap
